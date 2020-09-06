@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "PHP Digest",
+  "description": "PHP Digest",
+  "version": "0.1.0",
+  "icons": {
+    "512": "icon/black.png"
+  },
+  "browser_action": {
+    "default_icon": "icon/black.png"
+  },
+  "background": {
+    "scripts": [
+      "js/axios/axios.min.js",
+      "js/lib/http.js",
+      "js/app.js",
+      "background/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage"
+  ]
+}
