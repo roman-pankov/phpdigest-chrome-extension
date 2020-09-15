@@ -1,13 +1,13 @@
 chrome.runtime.onInstalled.addListener(() => {
     (async function(){
 
-        let token = window.localStorage.getItem('token');
+        let token = appStorage.get('token');
 
         if(null === token){
             await axios.post("/users")
                 .then(response => {
                     token = response.data.data.token;
-                    window.localStorage.setItem('token', token)
+                    appStorage.store('token', token)
                 })
             ;
         }
@@ -27,8 +27,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
                     }
                 }).then(response => {
                     response.data.data.exists
-                        ? app.icons.showExists(tab.tabId)
-                        : app.icons.showDefault(tab.tabId);
+                        ? app.icons.showGreen(tab.tabId)
+                        : app.icons.showBlack(tab.tabId);
                 }).catch(function(error){
                     console.log(error);
                 });
@@ -51,8 +51,8 @@ chrome.browserAction.onClicked.addListener(function(tab){
                 }
             }).then(response => {
                 response.data.data.event === 'added'
-                    ? app.icons.showExists(tab.tabId)
-                    : app.icons.showDefault(tab.tabId);
+                    ? app.icons.showGreen(tab.tabId)
+                    : app.icons.showBlack(tab.tabId);
             }).catch(function(error){
                 console.log(error);
             });

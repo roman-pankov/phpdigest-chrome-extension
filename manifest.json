@@ -13,6 +13,7 @@
     "scripts": [
       "js/axios/axios.min.js",
       "js/lib/http.js",
+      "js/lib/app-storage.js",
       "js/app.js",
       "background/background.js"
     ],
